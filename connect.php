@@ -4,6 +4,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use MongoDB\Client;
 
-$client = new MongoDB\Client('mongodb://localhost:27017');
+$collection = (new MongoDB\Client)->teste->users;
 
-var_dump($client);
+$insertOneResult = $collection->insertOne([
+    'username' => 'fulano',
+    'email' => 'fulano@email.com',
+    'name' => 'Fulano Teste',
+]);
+
+var_dump($insertOneResult->getInsertedId());
